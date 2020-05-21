@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,10 +14,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static const platform = const MethodChannel("razorpay_flutter");
-  TextEditingController _controller;
 
   Razorpay _razorpay;
-  int totalAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +25,11 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Razorpay Sample App'),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              LimitedBox(
-                  maxWidth: 150,
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: 'Enter the amount',
-                    ),
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        totalAmount = num.parse(value);
-                      });
-                    },
-                  )),
-              RaisedButton(
-                onPressed: openCheckout,
-                child: Text('Make payment'),
-                color: Colors.blue,
-              )
-            ],
-          ),
-        ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              RaisedButton(onPressed: openCheckout, child: Text('Open'))
+            ])),
       ),
     );
   }
@@ -75,10 +52,10 @@ class _MyAppState extends State<MyApp> {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_1DP5mmOlF5G5ag',
-      'amount': totalAmount * 100,
-      'name': 'company name',
-      'description': 'test payment',
-      'prefill': {'contact': '', 'email': ''},
+      'amount': 2000,
+      'name': 'Acme Corp.',
+      'description': 'Fine T-Shirt',
+      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }
