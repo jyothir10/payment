@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_1DP5mmOlF5G5ag',
+      'key': 'rzp_test_IQwhGvbvsOZmJ0',
       'amount': 2000,
       'name': 'Acme Corp.',
       'description': 'Fine T-Shirt',
